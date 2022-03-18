@@ -27,16 +27,11 @@ public class SudokuSolver {
     }
 
     public static boolean validate(char[][] nums, int x, int y, char value){
-        for(int i = 0; i < nums.length; i++){
-            for (int j = 0; j <  nums.length; j++) {
-                if((x == i || y == j || squareGroup(x,y) == squareGroup(i,j)) && nums[i][j] == value)
-                    return false;
-            }
+        for(int i = 0; i < 9; i++){
+            if(nums[i][y] == value) return false;
+            if(nums[x][i] == value) return false;
+            if(nums[x/3*3+i/3][y/3*3+i%3] == value) return false;
         }
         return true;
-    }
-
-    public static int squareGroup(int x, int y){
-        return x/3+y/3*3;
     }
 }
